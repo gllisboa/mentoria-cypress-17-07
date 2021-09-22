@@ -7,11 +7,8 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
-//
 
 Cypress.Commands.add('realizaCadastro', (cadastro) => {
-
 
     cy.iniciarCadastro(cadastro.email)
 
@@ -43,28 +40,21 @@ Cypress.Commands.add('iniciarCadastro', (email) => {
 
         .get("#create-account_form > div > div")
         .then((element) => {
-
             expect(element).class('form-ok')
-
         })
         .get('@input-email').type('{enter}')
 
         .url().should('contain', '#account-creation')
         .wait('@rota-formulario').its('response.statusCode').should('equal', 200)
 
-
         // O invoke ele chama uma funcao jquery no elmento que foi capturado anteriomente
         // 'text'  : Ele pega o valor do  texto entre tags HTML
         // 'val'    : Pega o valor do atributo value da tag HTML
         .get('#email').invoke('val').should('be.equal', email)
-
-
-
-
  })
 
 
- Cypress.Commands.add('preencherFormulario', (cadastro ={}) => { 
+ Cypress.Commands.add('preencherFormulario', (cadastro ={}) => {
 
     //@todo colocar uma validação se o eelemento está visivel
 
